@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race Management Front Desk</title>
+    <link rel="stylesheet" href="/Frontdesk/FrontDesk.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="header">
+        <h1><i class="fas fa-flag-checkered"></i> Race Management</h1>
+        <div class="status-indicator">
+            <span id="connection-status">Connected</span>
+            <span id="last-update"></span>
+        </div>
+        <div class="theme-toggle" aria-label="Toggle theme">
+            <input type="checkbox" id="theme-switch" aria-checked="false" aria-label="Toggle dark mode">
+            <label for="theme-switch" class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </label>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Upcoming Races Section -->
+        <section id="race-management">
+            <div class="section-header">
+                <h2><i class="fas fa-list"></i> Upcoming Races</h2>
+                <div class="search-box">
+                    <input type="text" id="race-search" placeholder="Search races...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <div class="race-list-container">
+                <ul id="race-list"></ul>
+            </div>
+
+            <div class="add-race-section">
+                <h3><i class="fas fa-plus"></i> Add New Race</h3>
+                <form id="race-form">
+                    <div class="form-group">
+                        <input type="text" id="race-name" placeholder="Race Name" required>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-plus"></i> Add Race
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Race Details Section -->
+        <section id="race-details">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> Race Details</h2>
+                <div class="race-actions">
+                    <button id="change-name-btn" class="secondary-btn">
+                        <i class="fas fa-edit"></i> Edit Name
+                    </button>
+                    <button id="add-driver-btn" class="primary-btn">
+                        <i class="fas fa-user-plus"></i> Add Driver
+                    </button>
+                    <button id="delete-race-btn" class="danger-btn">
+                        <i class="fas fa-trash"></i> Delete Race
+                    </button>
+                </div>
+            </div>
+
+            <div id="race-details-content">
+                <div class="race-info">
+                    <div class="info-group">
+                        <label>Race Name:</label>
+                        <span id="race-details-name"></span>
+                    </div>
+                    <div class="info-group">
+                        <label>Race Time:</label>
+                        <span id="race-details-time"></span>
+                    </div>
+                    <div class="info-group">
+                        <label>Number of Drivers:</label>
+                        <span id="race-details-driver-count"></span>
+                    </div>
+                </div>
+
+                <div class="drivers-section">
+                    <h3><i class="fas fa-users"></i> Drivers</h3>
+                    <ul class="drivers-list" id="race-details-drivers"></ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <div id="change-name-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Change Race Name</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="change-name-form">
+                <div class="form-group">
+                    <label for="new-race-name">New Race Name</label>
+                    <input type="text" id="new-race-name" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Save Changes</button>
+                    <button type="button" class="secondary-btn" id="cancel-change-name">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-driver-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus"></i> Add Driver</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="add-driver-form">
+                <div class="form-group">
+                    <label for="driver-name">Driver Name</label>
+                    <input type="text" id="driver-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-id">Car ID</label>
+                    <input type="text" id="car-id" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Add Driver</button>
+                    <button type="button" class="secondary-btn" id="cancel-add-driver">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-driver-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-edit"></i> Edit Driver</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="edit-driver-form">
+                <div class="form-group">
+                    <label for="edit-driver-name">Driver Name</label>
+                    <input type="text" id="edit-driver-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-car-id">Car ID</label>
+                    <input type="text" id="edit-car-id" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Save Changes</button>
+                    <button type="button" class="secondary-btn" id="cancel-edit-driver">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="delete-race-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Delete Race</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this race? This action cannot be undone.</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="confirm-delete" class="danger-btn">Yes, Delete</button>
+                <button type="button" id="cancel-delete" class="secondary-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-driver-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Delete Driver</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove this driver from the race?</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="confirm-delete-driver" class="danger-btn">Yes, Remove</button>
+                <button type="button" id="cancel-delete-driver" class="secondary-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+    <script src="/Frontdesk/FrontDesk.js"></script>
+</body>
+</html>

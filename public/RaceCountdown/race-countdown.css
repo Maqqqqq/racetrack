@@ -1,0 +1,159 @@
+/* race-countdown.css */
+
+:root {
+    --primary: #2196f3;
+    --primary-dark: #1976d2;
+    --secondary: #757575;
+    --danger: #f44336;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --background: #181a1b;
+    --surface: #23272a;
+    --surface-glass: rgba(35, 39, 42, 0.7);
+    --surface-glass-blur: 8px;
+    --surface-glass-border: rgba(255,255,255,0.08);
+    --text-primary: #f5f6fa;
+    --text-secondary: #b0b3b8;
+    --icon-accent: #00e6ff;
+    --icon-glow: #00e6ff88;
+    --border: #31363b;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    --bg-gradient: linear-gradient(120deg, #23272a 0%, #2196f3 100%);
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+}
+
+body.light-theme {
+    --background: #f5f5f5;
+    --surface: #ffffff;
+    --surface-glass: rgba(255,255,255,0.7);
+    --surface-glass-blur: 6px;
+    --surface-glass-border: rgba(33,150,243,0.08);
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --icon-accent: #2196f3;
+    --icon-glow: #2196f388;
+    --border: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --bg-gradient: linear-gradient(120deg, #e3f0ff 0%, #b6e0ff 100%);
+
+    .timer {
+        background: var(--surface);
+        box-shadow:
+            0 0 20px var(--icon-glow),
+            0 0 40px var(--icon-glow),
+            0 0 60px var(--icon-glow),
+            inset 0 0 10px var(--icon-glow);
+        color: var(--primary);
+    }
+
+    .timer:hover {
+        background: var(--surface-glass);
+        box-shadow:
+            0 0 30px var(--icon-glow),
+            0 0 50px var(--icon-glow),
+            0 0 70px var(--icon-glow),
+            inset 0 0 15px var(--icon-glow);
+    }
+}
+
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-gradient);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.timer {
+  font-size: 8rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  background: var(--surface);
+  padding: 2rem 4rem;
+  border-radius: 20px;
+  box-shadow:
+    0 0 20px var(--icon-glow),
+    0 0 40px var(--icon-glow),
+    0 0 60px var(--icon-glow),
+    inset 0 0 10px var(--icon-glow);
+  user-select: none;
+  text-align: center;
+  min-width: 15rem;
+  color: var(--primary);
+}
+
+/* Optional: Add a subtle blinking colon effect */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.timer::after {
+  content: "";
+  animation: blink 1s infinite;
+}
+
+/* Theme Toggle Styles */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.theme-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: var(--border);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    transition: background 0.3s;
+    gap: 0.5rem;
+}
+
+.toggle-label .fa-moon {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.toggle-label .fa-sun {
+    color: #ff9800;
+    font-size: 1.2rem;
+}
+
+body.light-theme .toggle-label .fa-moon {
+    opacity: 0.3;
+}
+
+body:not(.light-theme) .toggle-label .fa-sun {
+    opacity: 0.3;
+}

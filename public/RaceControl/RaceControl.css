@@ -1,0 +1,191 @@
+/* Root Variables */
+:root {
+    --primary: #2196f3;
+    --primary-dark: #1976d2;
+    --secondary: #757575;
+    --danger: #f44336;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --background: #181a1b;
+    --surface: #23272a;
+    --surface-glass: rgba(35, 39, 42, 0.7);
+    --surface-glass-blur: 8px;
+    --surface-glass-border: rgba(255,255,255,0.08);
+    --text-primary: #f5f6fa;
+    --text-secondary: #b0b3b8;
+    --icon-accent: #00e6ff;
+    --icon-glow: #00e6ff88;
+    --border: #31363b;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    --bg-gradient: linear-gradient(120deg, #23272a 0%, #2196f3 100%);
+}
+
+/* Animated Background */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background: var(--bg-gradient);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 800px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Race Modes */
+.race-modes {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.mode-btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 120px;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+}
+
+.mode-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.mode-btn.safe:hover { background-color: var(--success); }
+.mode-btn.hazard:hover { background-color: var(--warning); }
+.mode-btn.danger:hover { background-color: var(--danger); }
+.mode-btn.finished:hover { background-color: var(--primary); }
+
+.mode-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Control Buttons */
+.control-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.control-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.control-btn:disabled {
+    background-color: var(--secondary);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Next Race Session */
+.next-race {
+    background-color: var(--surface-glass);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid var(--surface-glass-border);
+    backdrop-filter: blur(var(--surface-glass-blur)) saturate(120%);
+}
+
+.next-race h3 {
+    margin: 0 0 1rem 0;
+    color: var(--primary);
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#nextRaceDrivers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#nextRaceDrivers li {
+    list-style: none;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .race-modes {
+        flex-direction: column;
+    }
+
+    .mode-btn {
+        width: 100%;
+    }
+
+    .next-race {
+        padding: 1rem;
+    }
+}
+  

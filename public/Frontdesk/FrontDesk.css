@@ -1,0 +1,572 @@
+/* THEME VARIABLES */
+:root {
+    --primary: #2196f3;
+    --primary-dark: #1976d2;
+    --secondary: #757575;
+    --danger: #f44336;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --background: #181a1b;
+    --surface: #23272a;
+    --surface-glass: rgba(35, 39, 42, 0.7);
+    --surface-glass-blur: 8px;
+    --surface-glass-border: rgba(255,255,255,0.08);
+    --text-primary: #f5f6fa;
+    --text-secondary: #b0b3b8;
+    --icon-accent: #00e6ff;
+    --icon-glow: #00e6ff88;
+    --border: #31363b;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    --bg-gradient: linear-gradient(120deg, #23272a 0%, #2196f3 100%);
+}
+
+body.light-theme {
+    --background: #f5f5f5;
+    --surface: #ffffff;
+    --surface-glass: rgba(255,255,255,0.7);
+    --surface-glass-blur: 6px;
+    --surface-glass-border: rgba(33,150,243,0.08);
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --icon-accent: #2196f3;
+    --icon-glow: #2196f388;
+    --border: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --bg-gradient: linear-gradient(120deg, #e3f0ff 0%, #b6e0ff 100%);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+/* Header */
+.header {
+    background-color: var(--surface);
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 16px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.header h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.status-indicator {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    align-items: center;
+}
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.theme-toggle input[type="checkbox"] {
+    display: none;
+}
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: var(--border);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    transition: background 0.3s;
+    gap: 0.5rem;
+}
+.toggle-label .fa-moon {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+.toggle-label .fa-sun {
+    color: #ff9800;
+    font-size: 1.2rem;
+}
+body.light-theme .toggle-label .fa-moon {
+    opacity: 0.3;
+}
+body:not(.light-theme) .toggle-label .fa-sun {
+    opacity: 0.3;
+}
+
+/* Main container */
+.main-container {
+    max-width: 1200px;
+    margin: 3rem auto 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.7rem;
+    justify-content: center;
+}
+
+/* Card Sections */
+section {
+    background: var(--surface-glass);
+    border-radius: 22px;
+    box-shadow: 0 8px 32px var(--shadow);
+    backdrop-filter: blur(var(--surface-glass-blur)) saturate(120%);
+    border: 1.5px solid var(--surface-glass-border);
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+    transition: background 0.5s, box-shadow 0.3s, border 0.3s;
+}
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.section-header h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+  display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+
+/* Search box */
+.search-box {
+    position: relative;
+    width: 250px;
+}
+.search-box input {
+    width: 100%;
+    padding: 0.6rem 2rem 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: var(--background);
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+.search-box i {
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+/* Race List */
+.race-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+}
+ul {
+  list-style: none;
+}
+li {
+    padding: 1.2rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 0.7rem;
+  cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+li:hover {
+    background-color: #23272aee;
+    border-color: var(--primary);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+input[type="text"],
+input[type="datetime-local"] {
+  width: 100%;
+    padding: 1rem;
+  border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: var(--background);
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.15);
+}
+
+/* Buttons */
+button {
+    padding: 1rem 2rem;
+  border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+  cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.primary-btn {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+.primary-btn:hover {
+    background-color: var(--primary-dark);
+}
+.secondary-btn {
+    background-color: var(--secondary);
+    color: white;
+}
+.secondary-btn:hover {
+    background-color: #616161;
+}
+.danger-btn {
+    background-color: var(--danger);
+    color: white;
+}
+.danger-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Modals */
+.modal {
+    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(24, 26, 27, 0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+    transition: var(--transition);
+}
+.modal-content {
+    background-color: var(--surface);
+    border-radius: 16px;
+    width: 95%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px var(--shadow);
+    animation: slideIn 0.3s ease;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+}
+.modal-content input[type="text"], .modal-content input[type="number"] {
+    max-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+.modal-header {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h3 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+.modal-body {
+    padding: 1.5rem;
+}
+.form-actions {
+    padding: 1.2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.close-modal:hover {
+    color: var(--primary);
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    padding: 1.2rem 2.2rem;
+    border-radius: 8px;
+    background-color: var(--surface);
+    box-shadow: 0 2px 8px var(--shadow);
+    transform: translateY(150%);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.notification.show {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .header {
+        flex-direction: column;
+        gap: 1.2rem;
+        text-align: center;
+    }
+    .section-header {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    .search-box {
+        width: 100%;
+    }
+    .race-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+    button {
+        width: 100%;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.modal.show {
+    animation: fadeIn 0.3s cubic-bezier(.4,0,.2,1);
+}
+.modal-content {
+    animation: slideIn 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+/* Animated Gradient Background */
+.animated-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background: var(--bg-gradient);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
+    transition: background 0.5s;
+}
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body, .main-container, section, .modal-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassmorphism for cards and modals */
+section, .modal-content {
+    background: var(--surface-glass);
+    box-shadow: 0 8px 32px var(--shadow);
+    backdrop-filter: blur(var(--surface-glass-blur)) saturate(120%);
+    border: 1.5px solid var(--surface-glass-border);
+    transition: background 0.5s, box-shadow 0.3s, border 0.3s;
+}
+
+/* Custom font for headings */
+.header h1, .section-header h2, .drivers-section h3, .add-race-section h3 {
+    font-family: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px #0008;
+    color: var(--primary);
+}
+
+/* Playful accent icons */
+.header h1 i, .section-header h2 i, .add-race-section h3 i, .drivers-section h3 i {
+    color: var(--icon-accent);
+    filter: drop-shadow(0 0 6px var(--icon-glow));
+    transition: color 0.5s, filter 0.5s;
+}
+
+/* Card and button hover/active effects */
+li, section, .modal-content {
+    transition: box-shadow 0.3s, transform 0.3s, background 0.5s;
+}
+li:hover, section:hover, .modal-content:hover {
+    box-shadow: 0 12px 32px 0 var(--primary), 0 2px 8px var(--shadow);
+    transform: translateY(-2px) scale(1.01);
+}
+button:active {
+    transform: scale(0.97);
+}
+
+/* Entrance animation for main sections */
+.main-container > section {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 0.8s cubic-bezier(.4,0,.2,1) forwards;
+}
+.main-container > section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Remove date input styles */
+input[type="datetime-local"] { display: none !important; }
+
+/* Input fields smaller font */
+input[type="text"] {
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+}
+
+/* Ensure search box is inside Upcoming Races column */
+#race-management .search-box,
+#race-management .search-box input,
+#race-management .form-group input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 14px;
+    margin: 0;
+}
+#race-management .search-box {
+    padding: 0;
+    margin-bottom: 1.2rem;
+    background: none;
+}
+#race-management .search-box input {
+    padding: 0.6rem 2rem 0.6rem 1rem;
+}
+.add-race-section {
+    margin-top: 12px;
+}
+
+/* Center the two main sections more horizontally */
+@media (min-width: 900px) {
+  .main-container {
+        justify-items: center;
+        align-items: flex-start;
+    }
+    section {
+        min-width: 370px;
+        max-width: 500px;
+    }
+}
+
+#race-details .race-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+#race-details .race-actions button {
+    margin-bottom: 0;
+    border-radius: 12px;
+}
+#race-details .race-actions button:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.drivers-list .driver-info {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+.drivers-list .driver-info strong {
+    font-family: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: var(--primary);
+    text-shadow: 0 2px 8px #0008;
+    margin-right: 0.5rem;
+}
+.drivers-list .driver-info .car-id {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.drivers-list .driver-actions {
+    display: flex;
+    gap: 0.7rem;
+}
+.drivers-list .driver-actions button {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    min-width: 90px;
+    font-weight: 700;
+    box-shadow: 0 1px 4px var(--shadow);
+}
+@media (max-width: 600px) {
+    .drivers-list .driver-info strong {
+        font-size: 1.3rem;
+    }
+    .drivers-list .driver-actions button {
+        font-size: 0.95rem;
+        padding: 0.45rem 0.8rem;
+        min-width: 70px;
+    }
+}
+
+.drivers-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+}

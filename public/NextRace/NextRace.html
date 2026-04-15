@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Race</title>
+    <link rel="stylesheet" href="/NextRace/NextRace.css">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <h1>Next Race</h1>
+    <div class="main-container">
+        <!-- Next Race Details Section -->
+        <section id="next-race-details">
+            <h2>Next Race Details</h2>
+            <div id="next-race-content">
+                <p><strong>Race Name:</strong> <span id="next-race-name"></span></p>
+                <p><strong>Number of Drivers:</strong> <span id="next-race-driver-count"></span></p>
+                <h3>Drivers:</h3>
+                <ul id="next-race-drivers"></ul>
+                <p id="paddock-message"></p>
+            </div>
+        </section>
+    </div>
+
+    <script src="/NextRace/NextRace.js"></script>
+</body>
+</html>

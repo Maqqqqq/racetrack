@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beachside Racetrack Login</title>
+  <link rel="stylesheet" href="/login/login.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <div class="wrapper">
+    <div class="caption">Welcome to Beachside Racetrack!</div>
+    <div class="theme-toggle" aria-label="Toggle theme">
+      <input type="checkbox" id="theme-switch" aria-checked="false" aria-label="Toggle dark mode">
+      <label for="theme-switch" class="toggle-label">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+      </label>
+    </div>
+    <form id="login-form" class="login-form">
+      <div class="input-group">
+        <label for="accessKey">Access Key</label>
+        <input type="password" id="accessKey" name="accessKey" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <div id="message" class="error-message"></div>
+    <button id="guestButton" class="btn btn-guest">Leader board</button>
+    <button id="nextRace" class="btn nextRace">Next Race</button>
+    <button id="raceCountdown" class="btn raceCountdown">Race Countdown</button>
+    <button id="raceFlags" class="btn flags">race-flags</button>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io(window.location.origin, {
+  transports: ['websocket'] // force WebSocket only
+});
+  </script>
+  <script src="/login/login.js"></script>
+</body>
+</html>

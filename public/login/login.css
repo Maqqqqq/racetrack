@@ -1,0 +1,377 @@
+/* THEME VARIABLES */
+:root {
+    --primary: #2196f3;
+    --primary-dark: #1976d2;
+    --secondary: #757575;
+    --danger: #f44336;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --background: #181a1b;
+    --surface: #23272a;
+    --surface-glass: rgba(35, 39, 42, 0.7);
+    --surface-glass-blur: 8px;
+    --surface-glass-border: rgba(255,255,255,0.08);
+    --text-primary: #f5f6fa;
+    --text-secondary: #b0b3b8;
+    --icon-accent: #00e6ff;
+    --icon-glow: #00e6ff88;
+    --border: #31363b;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    --bg-gradient: linear-gradient(120deg, #23272a 0%, #2196f3 100%);
+    --toggle-width: 60px;
+    --toggle-height: 30px;
+    --toggle-padding: 4px;
+    --toggle-radius: 30px;
+    --toggle-handle-size: 22px;
+    --accent-color: #6a0dad; /* Purple for accents */
+    --accent-color-hover: #7b2ad9;
+    --accent-color-active: #5f099c;
+    --driver-color: #ff9900;
+    --driver-hover: #ee8800;
+    --driver-active: #cc7700;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body.light-theme {
+    --background: #f5f5f5;
+    --surface: #ffffff;
+    --surface-glass: rgba(255,255,255,0.7);
+    --surface-glass-blur: 6px;
+    --surface-glass-border: rgba(33,150,243,0.08);
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --icon-accent: #2196f3;
+    --icon-glow: #2196f388;
+    --border: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --bg-gradient: linear-gradient(120deg, #e3f0ff 0%, #b6e0ff 100%);
+    --driver-color: #ff9900;
+    --driver-hover: #ee8800;
+    --driver-active: #cc7700;
+    .btn-primary {
+        background-color: var(--primary-button-bg);
+        color: var(--primary-button-text);
+    }
+
+    .btn-guest {
+        background-color: var(--primary-button-bg);
+        color: var(--primary-button-text);
+    }
+
+    .btn-primary:hover,
+    .btn-guest:hover {
+        background-color: var(--primary-button-hover);
+    }
+
+    .btn-primary:active,
+    .btn-guest:active {
+        background-color: var(--primary-button-active);
+    }
+
+    .error-message {
+        color: var(--danger);
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: var(--transition);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-gradient);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+    z-index: -1; /* Ensures it stays behind content */
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Original content of login.css */
+.wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  text-align: center;
+  z-index: 1;
+}
+
+.caption {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px var(--icon-glow);
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.loginContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.loginbutton, .guestbutton, .driverbutton, .nextRace, .raceCount, .raceFlags {
+  /* Removed redundant styling to ensure consistency with .btn */
+}
+
+/* Driver button specific styling */
+.nextRace {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.nextRace:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.nextRace.active {
+  background-color: var(--primary-dark);
+  transform: translateY(0);
+  box-shadow: none;
+}
+.flags {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.flags:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.flags.active {
+  background-color: var(--primary-dark);
+  transform: translateY(0);
+  box-shadow: none;
+}
+.raceCountdown {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.raceCountdown:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.raceCountdown.active {
+  background-color: var(--primary-dark);
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .loginContainer {
+    grid-template-columns: 1fr; /* Stack buttons on smaller screens */
+  }
+  .loginbutton, .guestbutton, .driverbutton {
+    grid-column: span 1; /* Single column on smaller screens */
+  }
+  .driverbutton {
+    grid-column: span 1;
+  }
+  .driverOpt {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Theme Toggle Styles */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.theme-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: var(--border);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    transition: background 0.3s;
+    gap: 0.5rem;
+}
+
+.toggle-label .fa-moon {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.toggle-label .fa-sun {
+    color: #ff9800;
+    font-size: 1.2rem;
+}
+
+body.light-theme .toggle-label .fa-moon {
+    opacity: 0.3;
+}
+
+body:not(.light-theme) .toggle-label .fa-sun {
+    opacity: 0.3;
+}
+
+/* Button Styles */
+.btn {
+    box-sizing: border-box; /* Ensures padding is included in the total width/height */
+    display: block;
+    width: 100%;
+    max-width: 300px; /* Max width for consistency */
+    margin: 1rem auto; /* Consistent vertical spacing and horizontal centering */
+    text-align: center;
+    min-height: 50px; /* Ensures consistent height across all buttons */
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 20px; /* Increased border-radius for more rounded caps */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #fff;
+    max-width: 200px; /* Made the LOGIN button smaller */
+    padding: 0.6rem 1.5rem; /* Adjusted padding for smaller size */
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.btn-guest {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.btn-guest:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.btn-guest:active {
+    background-color: var(--primary-dark);
+    color: #fff;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Form Styles */
+.login-form {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.input-group label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--background);
+    color: var(--text-primary);
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary);
+}
+
+/* Message Styles */
+.error-message {
+    color: var(--danger);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.success-message {
+    color: var(--success);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .wrapper {
+        padding: 2rem 1.5rem;
+    }
+
+    .caption {
+        font-size: 2rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.7rem 1.5rem;
+    }
+}

@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+}
+
+.flag {
+    width: 100vw;
+    height: 100vh;
+}
+
+.flag.finished {
+    background-image: repeating-conic-gradient(black 0% 25%, white 0% 50%);
+    background-size: 20vw 20vw;
+}

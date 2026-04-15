@@ -1,0 +1,383 @@
+/* Root variables for consistency */
+:root {
+  /* Dark theme (default) */
+  --background: #121212;
+  --container-bg: #1e1e1e;
+  --card-bg: #2a2a2a;
+  --accent: #00bfa6;
+  --accent-hover: #008e76;
+  --text-primary: #f5f6fa;
+  --text-secondary: #b0b3b8;
+  --danger: #f44336;
+  --success: #2D8C2D;
+  --warning: #ffa726;
+  --border: #333;
+  --shadow: rgba(0, 0, 0, 0.7);
+  --card-shadow: 0 4px 6px var(--shadow);
+  --transition: all 0.3s ease;
+
+  /* Primary colors from Leaderboard.css */
+  --primary: #2196f3;
+  --primary-dark: #1976d2;
+
+  /* Gradient colors */
+  --bg-gradient: linear-gradient(120deg, #23272a 0%, #2196f3 100%);
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --background: #f5f5f5;
+  --container-bg: #ffffff;
+  --card-bg: #f0f0f0;
+  --accent: #00bfa6;
+  --accent-hover: #008e76;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --danger: #f44336;
+  --success: #2D8C2D;
+  --warning: #ffa726;
+  --border: #e0e0e0;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 4px 6px var(--shadow);
+
+  /* Primary colors from Leaderboard.css */
+  --primary: #2196f3;
+  --primary-dark: #1976d2;
+
+  /* Light theme gradient colors */
+  --bg-gradient: linear-gradient(120deg, #e3f0ff 0%, #b6e0ff 100%);
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: 'Orbitron', sans-serif;
+  min-height: 100vh;
+  transition: var(--transition);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated background */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background: var(--bg-gradient);
+  background-size: 200% 200%;
+  animation: gradientMove 8s ease-in-out infinite;
+  transition: background 0.5s;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Theme Switch Styles */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: var(--card-bg);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: var(--transition);
+  border: 2px solid var(--border);
+}
+
+.slider:before {
+  background-color: var(--accent);
+  bottom: 4px;
+  content: "";
+  height: 22px;
+  left: 4px;
+  position: absolute;
+  transition: var(--transition);
+  width: 22px;
+  z-index: 2;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider .fa-sun {
+  color: #f1c40f;
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 14px;
+  z-index: 1;
+  transition: var(--transition);
+  opacity: 1;
+}
+
+.slider .fa-moon {
+  color: #f1c40f;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 14px;
+  z-index: 1;
+  transition: var(--transition);
+  opacity: 0;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+input:checked + .slider .fa-sun {
+  opacity: 0;
+}
+
+input:checked + .slider .fa-moon {
+  opacity: 1;
+}
+
+input:not(:checked) + .slider .fa-sun {
+  opacity: 1;
+}
+
+input:not(:checked) + .slider .fa-moon {
+  opacity: 0;
+}
+
+.race-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--warning);
+  animation: pulse 2s infinite;
+}
+
+.status-text {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* Race info styles */
+.race-info {
+  background-color: var(--container-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: var(--card-shadow);
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.timer-label {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.timer-value {
+  font-size: 2rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Lap Timers Container */
+#lapTimersContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  background-color: var(--container-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+
+/* Individual car row */
+.carRow {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+.carRow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--shadow);
+}
+
+/* Time display */
+.carTimeDisplay {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.carTimeDisplay span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Lap timer buttons */
+.carButton {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.carButton:hover {
+  background-color: var(--accent-hover);
+  transform: scale(1.02);
+}
+
+.carButton:disabled {
+  background-color: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Race ended message */
+.race-ended-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--danger);
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  grid-column: 1 / -1;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Status colors */
+.status-indicator.active {
+  background-color: var(--success);
+}
+
+.status-indicator.warning {
+  background-color: var(--warning);
+}
+
+.status-indicator.danger {
+  background-color: var(--danger);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .race-info {
+    padding: 1rem;
+  }
+
+  .timer-display {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #lapTimersContainer {
+    padding: 1rem;
+  }
+}

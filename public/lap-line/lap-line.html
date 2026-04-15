@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lap Time Recorder</title>
+  <link rel="stylesheet" href="/lap-line/lap-line.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <div class="container">
+    <header class="header">
+      <h1><i class="fas fa-stopwatch"></i> Lap Time Recorder</h1>
+      <div class="header-right">
+        <div class="race-status">
+          <span class="status-indicator"></span>
+          <span class="status-text">Waiting for race...</span>
+        </div>
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round">
+              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i>
+            </div>
+          </label>
+        </div>
+      </div>
+    </header>
+    
+    <div class="race-info">
+      <div class="timer-display">
+        <span class="timer-label">Race Time:</span>
+        <span class="timer-value">00:00:000</span>
+      </div>
+    </div>
+
+    <div id="lapTimersContainer"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/lap-line/lap-line.js"></script>
+</body>
+</html>

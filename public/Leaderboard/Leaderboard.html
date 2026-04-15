@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race Leaderboard</title>
+    <link rel="stylesheet" href="/Leaderboard/Leaderboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="theme-toggle" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-switch" aria-checked="false" aria-label="Toggle dark mode">
+        <label for="theme-switch" class="toggle-label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </label>
+    </div>
+    <h1>Race Leaderboard</h1>
+    <div class="leaderboard-container">
+        <div class="header">
+            <h2>Current Race Status</h2>
+            <div class="race-status">
+                <!-- Add flag display here -->
+                <div class="flag-container">
+                    <div class="flag-display"></div>
+                    <span class="flag-label">Danger</span>
+                </div>
+                <div class="timer-display">00:00</div>
+            </div>
+        </div>
+        <div class="leaderboard">
+            <table>
+                <tbody id="leaderboard-body">
+                    <!-- Leaderboard rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/Leaderboard/Leaderboard.js"></script>
+</body>
+</html>
