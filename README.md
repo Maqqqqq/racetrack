@@ -2,6 +2,9 @@
 
 A comprehensive web-based system for managing and monitoring racetrack operations, including race control, lap tracking, and front desk management.
 
+## Author
+- Markus Stamm
+
 ## Features
 
 - **Role-based Access Control**
